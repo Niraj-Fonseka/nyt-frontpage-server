@@ -23,8 +23,6 @@ func main() {
 func fetchNYT(pwd string) {
 
 	path := fmt.Sprintf("%s/%s", pwd, "static/nyt.pdf")
-
-	log.Println(path)
 	for {
 		log.Println("Starting fetch ....")
 
