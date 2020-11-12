@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -9,12 +10,21 @@ import (
 )
 
 func main() {
-	go fetchNYT()
-	http.Handle("/", http.FileServer(http.Dir("./static")))
+	pwd, err := os.Getwd()
+	if err != nil {
+		log.Fatal(err)
+	}
+	staticPath := fmt.Sprintf("%s/static", pwd)
+	go fetchNYT(pwd)
+	http.Handle("/", http.FileServer(http.Dir(staticPath)))
 	http.ListenAndServe(":3000", nil)
 }
 
-func fetchNYT() {
+func fetchNYT(pwd string) {
+
+	path := fmt.Sprintf("%s/%s", pwd, "static/nyt.pdf")
+
+	log.Println(path)
 	for {
 		log.Println("Starting fetch ....")
 
@@ -26,7 +36,7 @@ func fetchNYT() {
 		defer resp.Body.Close()
 
 		// Create the file
-		out, err := os.Create("./static/scan.pdf")
+		out, err := os.Create(path)
 		if err != nil {
 			log.Println(err)
 			continue
