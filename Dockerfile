@@ -17,7 +17,5 @@ COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 WORKDIR /root/
 
 COPY --from=builder /server .
-
-EXPOSE 3000 
-
+ 
 CMD ["./server"]
