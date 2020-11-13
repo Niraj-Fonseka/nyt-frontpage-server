@@ -2,8 +2,10 @@
 
 An app that fetches the daily the front page of the New York Times newspaper and serves as an html page through a Go webserver. You can run this server and display this on any screen. Whenever a new frontpage is available the webpage will update automatically.
 
+***Taken on Nov 12th 2020. 24 inch vertical monitor***
+![example](example.jpg)
 
-### Get Started 
+### Getting Started 
 
 #### Docker: 
 
